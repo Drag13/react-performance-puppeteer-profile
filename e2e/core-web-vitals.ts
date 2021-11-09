@@ -5,7 +5,8 @@ export async function extractCoreWebVitals(page: Page) {
     return JSON.stringify(window._cwv);
   });
 
-  const metrics: { name: string; value: number }[] = JSON.parse(rawMetrics);
+  const metrics: { name: string; value: number }[] =
+    rawMetrics == null ? [] : JSON.parse(rawMetrics);
 
   const formattedMetrics = metrics.reduce(
     (result, entry) => ((result[entry.name] = entry.value), result),
